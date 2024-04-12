@@ -29,23 +29,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager">
+  <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">flutter-isin-blokchain-wallet-manager</h3>
+<h3 align="center">flutter-isin-blockchain-wallet-manager</h3>
 
   <p align="center">
     An awesome README template to jumpstart your projects!
     <br />
-    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager">View Demo</a>
+    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager">View Demo</a>
     ·
-    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -135,7 +135,7 @@ Follow these steps to seamlessly incorporate the flutter-blockchain-wallet-manag
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.git
+   git clone https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.git
    ```
 2. Install PUB packages
    ```sh
@@ -205,7 +205,7 @@ wallet management functionality into your Flutter app.
    ```
 
 For more detailed information, please refer to
-the [Example](https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/examples) section.
+the [Example](https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/examples) section.
 
 If you want to have more information about the PolygondID, please refer to
 the [PolygonID](https://github.com/0xPolygonID/polygonid-flutter-sdk)
@@ -218,7 +218,7 @@ the [PolygonID](https://github.com/0xPolygonID/polygonid-flutter-sdk)
 
 ## Roadmap
 
-See the [open issues](https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/issues) for a full
+See the [open issues](https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/issues) for a full
 list of proposed
 features (and known issues).
 
@@ -266,7 +266,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 * [Lorenzo Ronzani](https://www.linkedin.com/in/lorenzo-ronzani-658311186/) - lorenzo.ronzani@supsi.ch
 
 Project
-Link: [flutter-isin-blokchain-wallet-manager](https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager)
+Link: [flutter-isin-blockchain-wallet-manager](https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager)
 Organization Link: [IsinBlockchainTeam](https://github.com/IsinBlockchainTeam)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -297,25 +297,25 @@ to kick things off!
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
-[contributors-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/graphs/contributors
+[contributors-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
-[forks-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/network/members
+[forks-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
-[stars-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/stargazers
+[stars-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
-[issues-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/issues
+[issues-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/issues
 
-[license-shield]: https://img.shields.io/github/license/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
-[license-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blokchain-wallet-manager/blob/master/LICENSE.txt
+[license-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/blob/master/LICENSE.txt
 
 [Flutter]: https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white
 
