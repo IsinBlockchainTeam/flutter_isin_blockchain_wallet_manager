@@ -174,17 +174,27 @@ Follow these steps to seamlessly incorporate the flutter-blockchain-wallet-manag
 Getting started with the flutter-blockchain-wallet-manager is straightforward. Follow these steps to integrate the
 wallet management functionality into your Flutter app.
 
-1. Import the library
+1. Add the following statement to your `pubspec.yaml` file:
+
+    ```yaml
+   dependencies:
+     flutter_isin_blockchain_wallet_manager:
+       git:
+         url: https://github.com/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager.git
+         ref: main
+    ```
+
+2. Import the library
    ```dart
-   import 'package:flutter_isin_blokchain_wallet_manager/<component>.dart';
+   import 'package:flutter_isin_blockchain_wallet_manager/<component>.dart';
    ```
-2. Wrap your app with RestartWidget
+3. Wrap your app with RestartWidget
    ```dart
    return const RestartWidget(
       child: MyApp(),
     );
     ```
-3. Initialize the app with the wallet manager
+4. Initialize the app with the wallet manager
    ```dart
    return MaterialApp(
       title: 'Flutter Demo',
@@ -200,7 +210,7 @@ wallet management functionality into your Flutter app.
       ),
     );
     ```
-4. Setup PolygonID
+5. Setup PolygonID
    ```dart
    final PolygonID polygonID = PolygonID(
       chainID: 137,
@@ -213,12 +223,12 @@ wallet management functionality into your Flutter app.
       chainTokenExplorerUrl: 'https://explorer-mainnet.maticvigil.com/tokens',
     );
     ```
-5. Instantiate Wallet Services
+6. Instantiate Wallet Services
    ```dart
     final WalletService walletService = WalletService();
     final VCWalletService vcWalletService = VCWalletService(PolygonIdSdk.I);
    ```
-6. Get Wallets data
+7. Get Wallets data
    ```dart
     final String? eoaWalletPrivateKey = await walletService.readPrivateKey();
     final String? vcPrivateKey = await vcWalletService.readPrivateKey();
