@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flymoov_common_flutter/components/confirmation_button.dart';
-import 'package:flymoov_common_flutter/utils/restart_widget.dart';
+import 'package:flutter_isin_ui_kit/components/confirmation_button.dart';
+import 'package:flutter_isin_ui_kit/utils/restart_widget.dart';
 
 class WalletEraserButton extends ConfirmationButton {
   WalletEraserButton({super.key, required Function deleteWallets})

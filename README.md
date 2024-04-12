@@ -36,7 +36,7 @@
 <h3 align="center">flutter-isin-blockchain-wallet-manager</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A comprehensive Flutter library for seamlessly managing blockchain wallets, supporting both EOA (External Owned Account) and Polygon VC (Verifiable Credential), tailored for robust security and user-friendly interfaces.
     <br />
     <a href="https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager"><strong>Explore the docs »</strong></a>
     <br />
@@ -59,6 +59,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#specifications">Specifications</a></li>
       </ul>
     </li>
     <li>
@@ -108,7 +109,22 @@ managing digital identities and assets through blockchain wallets.
 
 This library is built mainly using the following technologies:
 
-* [![Flutter][Flutter]][Flutter-url]
+[![Flutter][Flutter]][Flutter-url]
+
+[![Dart][Dart]][Dart-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Specifications
+
+The project specifications are as follows:
+
+* EOA Wallet are based on the EVM (Ethereum Virtual Machine) and are compatible with the Ethereum network and forks. We
+  decided to use 12 words for the seed phrase and the BIP-39 standard for the wallet creation.
+* The private key is stored in the device's secure storage, and the wallet is encrypted with the user's PIN.
+* We decided to use the [Polygon ID](https://devs.polygonid.com/) platform for the VC (Verifiable Credential)
+  implementation.
+* When using both EOA and VC wallets together, the EOA secret phrase allows to recover also the VC wallet.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -155,7 +171,7 @@ wallet management functionality into your Flutter app.
 
 1. Import the library
    ```dart
-   import 'package:flutter_isin_blokchain_wallet_manager/flutter_isin_blokchain_wallet_manager.dart';
+   import 'package:flutter_isin_blokchain_wallet_manager/<component>.dart';
    ```
 2. Wrap your app with RestartWidget
    ```dart
@@ -194,7 +210,6 @@ wallet management functionality into your Flutter app.
     ```
 5. Instantiate Wallet Services
    ```dart
-    late PolygonIdSdk sdk = PolygonIdSdk.I;
     final WalletService walletService = WalletService();
     final VCWalletService vcWalletService = VCWalletService(PolygonIdSdk.I);
    ```
@@ -205,7 +220,7 @@ wallet management functionality into your Flutter app.
    ```
 
 For more detailed information, please refer to
-the [Example](https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/examples) section.
+the [Example](https://github.com/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager/tree/main/examples) section.
 
 If you want to have more information about the PolygondID, please refer to
 the [PolygonID](https://github.com/0xPolygonID/polygonid-flutter-sdk)
@@ -251,7 +266,7 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -267,6 +282,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Project
 Link: [flutter-isin-blockchain-wallet-manager](https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager)
+
 Organization Link: [IsinBlockchainTeam](https://github.com/IsinBlockchainTeam)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -316,6 +332,10 @@ to kick things off!
 [license-shield]: https://img.shields.io/github/license/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager.svg?style=for-the-badge
 
 [license-url]: https://github.com/IsinBlockchainTeam/flutter-isin-blockchain-wallet-manager/blob/master/LICENSE.txt
+
+[Dart]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white
+
+[Dart-url]: https://dart.dev/
 
 [Flutter]: https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white
 

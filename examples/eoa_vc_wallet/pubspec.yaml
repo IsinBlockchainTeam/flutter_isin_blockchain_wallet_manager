@@ -39,8 +39,10 @@ dependencies:
   wallet_management:
     path: ../../
 
-  flymoov_common_flutter:
-    path: ../../../fly_moov/common-flutter
+  flutter_isin_ui_kit:
+    git:
+      url: https://github.com/IsinBlockchainTeam/flutter_isin_ui_kit.git
+      ref: main
 
   polygonid_flutter_sdk:
     git:

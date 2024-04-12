@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
-import 'package:flymoov_common_flutter/components/input_field_obscurable.dart';
+import 'package:flutter_isin_ui_kit/components/input_field_obscurable.dart';
 
 import '../../common/storage/secure_storage.dart';
 import '../../common/storage/wallet_storage_manager.dart';

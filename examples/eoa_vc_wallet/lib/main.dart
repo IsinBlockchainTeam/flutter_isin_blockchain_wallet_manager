@@ -1,7 +1,7 @@
 import 'package:eoa_vc_wallet_example_app/shared_data.dart';
 import 'package:eoa_vc_wallet_example_app/views/home_page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flymoov_common_flutter/utils/restart_widget.dart';
+import 'package:flutter_isin_ui_kit/utils/restart_widget.dart';
 import 'package:polygonid_flutter_sdk/common/domain/entities/env_entity.dart';
 import 'package:polygonid_flutter_sdk/proof/data/dtos/circuits_to_download_param.dart';
 import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';

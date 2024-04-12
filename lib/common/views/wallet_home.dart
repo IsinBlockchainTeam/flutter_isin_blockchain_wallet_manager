@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flymoov_common_flutter/components/clipboard_copyable_text.dart';
-import 'package:flymoov_common_flutter/components/field_obscurable.dart';
+import 'package:flutter_isin_ui_kit/components/clipboard_copyable_text.dart';
+import 'package:flutter_isin_ui_kit/components/field_obscurable.dart';
 
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';
 import '../../vc_wallet_mgmt/model/vc_wallet.dart';

@@ -1,6 +1,6 @@
 import 'package:eoa_wallet/views/home_page_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flymoov_common_flutter/utils/restart_widget.dart';
+import 'package:flutter_isin_ui_kit/utils/restart_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wallet_management/eoa_wallet_mgmt/views/eoa_wallet_main.dart';
 import 'package:wallet_management/utils/secure_storage_keys.dart';

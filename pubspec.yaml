@@ -1,5 +1,5 @@
-name: wallet_management
-description: A new Flutter package project.
+name: flutter_isin_blockchain_wallet_manager
+description: A comprehensive Flutter library for seamlessly managing blockchain wallets, supporting both EOA (External Owned Account) and Polygon VC (Verifiable Credential), tailored for robust security and user-friendly interfaces.
 version: 0.0.1
 
 environment:
