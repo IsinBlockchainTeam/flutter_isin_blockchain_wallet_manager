@@ -84,6 +84,11 @@
 
 ## About The Project
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager/main/images/flutter_isin_blockchain_wallet_manager_demo.gif" alt="animated" height="500"/>
+</p>
+<!-- [![Product Name Screen Shot][product-screenshot]](https://github.com/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager) -->
+
 The flutter-blockchain-wallet-manager is an innovative Flutter library designed to facilitate the management of
 blockchain wallets, including both Externally Owned Accounts (EOA) and Verifiable Credentials (VC). This project aims to
 bridge the gap between complex blockchain operations and the user-friendly mobile environment Flutter is known for.
@@ -332,6 +337,8 @@ to kick things off!
 [license-shield]: https://img.shields.io/github/license/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager.svg?style=for-the-badge
 
 [license-url]: https://github.com/IsinBlockchainTeam/flutter_isin_blockchain_wallet_manager/blob/master/LICENSE.txt
+
+[product-screenshot]: images/flutter_isin_blockchain_wallet_manager_demo.gif
 
 [Dart]: https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white
 
