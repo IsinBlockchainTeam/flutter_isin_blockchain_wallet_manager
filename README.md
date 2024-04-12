@@ -304,7 +304,7 @@ to kick things off!
 * [GitHub Pages](https://pages.github.com)
 * [Font Awesome](https://fontawesome.com)
 * [React Icons](https://react-icons.github.io/react-icons/search)
-* [Flat Icon](https://www.flaticon.com)
+* [Flat Icon](https://www.flaticon.com/free-icons/digital-wallet)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
