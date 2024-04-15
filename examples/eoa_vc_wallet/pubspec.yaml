@@ -46,10 +46,8 @@ dependencies:
 
   polygonid_flutter_sdk:
     git:
-      #      url: https://github.com/IsinBlockchainTeam/polygonid-flutter-sdk.git
-      url: https://github.com/0xPolygonID/polygonid-flutter-sdk.git
-      #      ref: v1.0.0_supsi
-      ref: develop
+      url: https://github.com/IsinBlockchainTeam/polygonid-flutter-sdk.git
+      ref: v1.0.0_supsi
   shared_preferences: ^2.2.2
   flutter_dotenv: ^5.0.2
   flutter_secure_storage: ^9.0.0
