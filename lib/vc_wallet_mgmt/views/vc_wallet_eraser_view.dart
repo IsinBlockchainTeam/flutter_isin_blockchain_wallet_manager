@@ -1,4 +1,4 @@
-import 'package:wallet_management/common/views/wallet_eraser_view.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/common/views/wallet_eraser_view.dart';
 
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';
 import '../services/vc_wallet_service.dart';

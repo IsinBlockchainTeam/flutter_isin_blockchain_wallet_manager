@@ -6,11 +6,11 @@ import 'package:polygonid_flutter_sdk/common/domain/entities/env_entity.dart';
 import 'package:polygonid_flutter_sdk/proof/data/dtos/circuits_to_download_param.dart';
 import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wallet_management/eoa_wallet_mgmt/views/eoa_wallet_main.dart';
-import 'package:wallet_management/utils/secure_storage_keys.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/eoa_wallet_mgmt/views/eoa_wallet_main.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/utils/secure_storage_keys.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:wallet_management/vc_wallet_mgmt/views/vc_wallet_main.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/vc_wallet_mgmt/views/vc_wallet_main.dart';
 
 // https://stackoverflow.com/questions/57933021/flutter-how-do-i-delete-fluttersecurestorage-items-during-install-uninstall
 final keysToEliminate = [

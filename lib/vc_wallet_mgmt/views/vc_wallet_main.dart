@@ -1,5 +1,5 @@
 import 'package:polygonid_flutter_sdk/sdk/polygon_id_sdk.dart';
-import 'package:wallet_management/vc_wallet_mgmt/views/vc_wallet_eraser_view.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/vc_wallet_mgmt/views/vc_wallet_eraser_view.dart';
 
 import '../../common/views/wallet_manager.dart';
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';

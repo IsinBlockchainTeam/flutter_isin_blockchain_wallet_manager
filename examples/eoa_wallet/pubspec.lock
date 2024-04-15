@@ -230,6 +230,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_isin_blockchain_wallet_manager:
+    dependency: "direct main"
+    description:
+      path: "../.."
+      relative: true
+    source: path
+    version: "0.0.1"
   flutter_isin_ui_kit:
     dependency: "direct main"
     description:
@@ -799,13 +806,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.0.13"
-  wallet_management:
-    dependency: "direct main"
-    description:
-      path: "../.."
-      relative: true
-    source: path
-    version: "0.0.1"
   web:
     dependency: transitive
     description:

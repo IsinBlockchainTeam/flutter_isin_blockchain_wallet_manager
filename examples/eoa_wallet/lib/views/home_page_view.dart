@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_management/common/views/wallet_home.dart';
-import 'package:wallet_management/eoa_wallet_mgmt/services/wallet_service.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/common/views/wallet_home.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/eoa_wallet_mgmt/services/wallet_service.dart';
 
 import '../shared_data.dart';
 

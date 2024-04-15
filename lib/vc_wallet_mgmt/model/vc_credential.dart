@@ -1,5 +1,5 @@
 import 'package:polygonid_flutter_sdk/credential/domain/entities/claim_entity.dart';
-import 'package:wallet_management/vc_wallet_mgmt/model/vc_type.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/vc_wallet_mgmt/model/vc_type.dart';
 
 abstract class VCCredential {
   late final ClaimEntity claimEntity;

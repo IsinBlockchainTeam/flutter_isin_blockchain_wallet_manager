@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:polygonid_flutter_sdk/credential/domain/entities/claim_entity.dart';
 
 import 'vc_credential.dart';
