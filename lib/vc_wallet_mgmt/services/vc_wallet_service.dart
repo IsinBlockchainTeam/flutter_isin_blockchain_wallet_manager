@@ -27,7 +27,7 @@ class VCWalletService extends WalletStorageManager {
 
   Future<VCWallet> retrieveIdentity(String privateKey) async {
     String did = await sdk.identity.getDidIdentifier(
-        privateKey: privateKey, blockchain: 'polygon', network: 'mumbai');
+        privateKey: privateKey, blockchain: 'polygon', network: 'amoy');
     return VCWallet(privateKey, did);
   }
 
