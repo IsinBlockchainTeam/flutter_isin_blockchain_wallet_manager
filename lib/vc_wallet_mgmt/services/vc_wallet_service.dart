@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:polygonid_flutter_sdk/credential/domain/entities/claim_entity.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/common/iden3_message_entity.dart';
-import 'package:polygonid_flutter_sdk/iden3comm/domain/entities/credential/request/base.dart';
 import 'package:polygonid_flutter_sdk/iden3comm/domain/exceptions/iden3comm_exceptions.dart';
 import 'package:polygonid_flutter_sdk/identity/domain/entities/identity_entity.dart';
 import 'package:polygonid_flutter_sdk/identity/domain/entities/private_identity_entity.dart';
@@ -69,7 +68,7 @@ class VCWalletService extends WalletStorageManager {
   }
 
   Future<List<ClaimEntity>> getClaimsFromIssuer(
-      CredentialOfferMessageEntity claimOfferMessage, VCWallet wallet) async {
+      Iden3MessageEntity claimOfferMessage, VCWallet wallet) async {
     return sdk.iden3comm.fetchAndSaveClaims(
         message: claimOfferMessage,
         genesisDid: wallet.did,
@@ -151,8 +150,7 @@ class VCWalletService extends WalletStorageManager {
           await authenticate(iden3messageEntity, wallet);
           break;
         case Iden3MessageType.credentialOffer:
-          await getClaimsFromIssuer(
-              iden3messageEntity as CredentialOfferMessageEntity, wallet);
+          await getClaimsFromIssuer(iden3messageEntity, wallet);
           break;
         default:
           debugPrint("not managed now");

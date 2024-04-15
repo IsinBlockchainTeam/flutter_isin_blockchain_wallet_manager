@@ -16,9 +16,10 @@ dependencies:
   ed25519_hd_key: ^2.2.1
   polygonid_flutter_sdk:
     git:
-      url: https://github.com/IsinBlockchainTeam/polygonid-flutter-sdk.git
-      ref: v1.0.0_supsi
-
+      #      url: https://github.com/IsinBlockchainTeam/polygonid-flutter-sdk.git
+      url: https://github.com/0xPolygonID/polygonid-flutter-sdk.git
+      #      ref: v1.0.0_supsi
+      ref: develop
 
   flutter_isin_ui_kit:
     git:
