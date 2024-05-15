@@ -171,6 +171,8 @@ Follow these steps to seamlessly incorporate the flutter-blockchain-wallet-manag
 
 ## Usage
 
+// TODO: Add the camera config example
+
 Getting started with the flutter-blockchain-wallet-manager is straightforward. Follow these steps to integrate the
 wallet management functionality into your Flutter app.
 

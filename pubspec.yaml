@@ -23,6 +23,8 @@ dependencies:
     git:
       url: https://github.com/IsinBlockchainTeam/flutter_isin_ui_kit.git
       ref: main
+  walletconnect_flutter_v2: ^2.1.11
+  mobile_scanner: ^4.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_isin_ui_kit/components/clipboard_copyable_text.dart';
 import 'package:flutter_isin_ui_kit/components/field_obscurable.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:walletconnect_flutter_v2/apis/core/pairing/utils/pairing_models.dart';
+import 'package:walletconnect_flutter_v2/apis/web3wallet/web3wallet.dart';
 
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';
 import '../../vc_wallet_mgmt/model/vc_wallet.dart';
@@ -30,10 +33,52 @@ class _WalletHomeState extends State<WalletHome> {
   VCWallet? vcWallet;
   late Future<void> initialized;
 
+  late MobileScannerController mobileScannerController;
+  bool cameraStarted = false;
+  late final Web3Wallet _web3Wallet;
+
   @override
   void initState() {
     super.initState();
+
+    mobileScannerController = MobileScannerController(
+        detectionSpeed: DetectionSpeed.noDuplicates, autoStart: false);
+
     initialized = init();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    mobileScannerController.dispose();
+    cameraStarted = false;
+  }
+
+  void toggleCamera() async {
+    bool tmpCameraStarted = false;
+
+    if (cameraStarted) {
+      mobileScannerController.stop();
+      tmpCameraStarted = false;
+    } else {
+      mobileScannerController.start();
+      tmpCameraStarted = true;
+    }
+
+    setState(() {
+      cameraStarted = tmpCameraStarted;
+    });
+  }
+
+  Future<String> onQrDetected(String qrString) async {
+    debugPrint("QR string detected: $qrString");
+    toggleCamera();
+
+    final Uri uriData = Uri.parse(qrString);
+    final resp = await _web3Wallet.pair(uri: uriData);
+    print(resp);
+
+    return qrString;
   }
 
   readEoaPrivateKey() async {
@@ -59,6 +104,20 @@ class _WalletHomeState extends State<WalletHome> {
   }
 
   Future<void> init() async {
+    _web3Wallet = await Web3Wallet.createInstance(
+      projectId: 'a6e0d46c6728f539666292e8062a7ae9',
+      metadata: const PairingMetadata(
+        name: 'Wallet Name',
+        description: 'Wallet Description',
+        url: 'https://your_wallet_url.com/',
+        icons: ['https://your_wallet_icon.png'],
+        redirect: Redirect(
+          native: 'yourwalletscheme://',
+          universal: 'https://your_wallet_url.com',
+        ),
+      ),
+    );
+
     await readEoaPrivateKey();
     await initEoaWalletAddress();
     if (widget.vcWalletService != null) {
@@ -111,7 +170,32 @@ class _WalletHomeState extends State<WalletHome> {
     children.add(const SizedBox(height: 30));
     children.addAll(_buildEoaWalletDetails());
     children.addAll(_buildVcWalletDetails());
+    children.add(_buildWalletConnectSection());
     return children;
+  }
+
+  Widget _buildWalletConnectSection() {
+    return Column(children: [
+      cameraStarted
+          ? SizedBox(
+              height: 300,
+              child: MobileScanner(
+                  controller: mobileScannerController,
+                  onDetect: (barcode) async {
+                    // If the barcode has a value, return it and pop the sheet
+                    if (barcode.barcodes.isNotEmpty &&
+                        barcode.barcodes.first.rawValue != null) {
+                      await onQrDetected(barcode.barcodes.first.rawValue!);
+                    }
+                  }),
+            )
+          : const SizedBox(),
+      OutlinedButton(
+          onPressed: toggleCamera,
+          child: cameraStarted == false
+              ? const Text('Connect Wallet')
+              : const Text('Close camera')),
+    ]);
   }
 
   List<Widget> _buildEoaWalletDetails() {
