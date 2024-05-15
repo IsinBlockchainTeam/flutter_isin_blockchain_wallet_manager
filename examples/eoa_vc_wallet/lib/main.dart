@@ -35,15 +35,20 @@ Future main() async {
   await dotenv.load(fileName: '.env');
 
   await PolygonIdSdk.init(
-      env: EnvEntity(
-          blockchain: dotenv.env['POLYGON_ID_BLOCKCHAIN']!,
-          network: dotenv.env['POLYGON_ID_NETWORK']!,
-          web3Url: dotenv.env['POLYGON_ID_WEB3_URL']!,
-          web3RdpUrl: dotenv.env['POLYGON_ID_WEB3_RDP_URL']!,
-          web3ApiKey: dotenv.env['POLYGON_ID_WEB3_API_KEY']!,
-          idStateContract: dotenv.env['POLYGON_ID_STATE_CONTRACT']!,
-          pushUrl: dotenv.env['POLYGON_ID_PUSH_URL']!,
-          ipfsUrl: dotenv.env['POLYGON_ID_IPFS_URL']!));
+      env: EnvEntity.fromJson({
+    "pushUrl": dotenv.env['POLYGON_ID_PUSH_URL']!,
+    "ipfsUrl": dotenv.env['POLYGON_ID_IPFS_URL']!,
+    "didMethods": [],
+    "chainConfigs": {
+      "80002": {
+        "blockchain": dotenv.env['POLYGON_ID_BLOCKCHAIN']!,
+        "rpcUrl":
+            "${dotenv.env['POLYGON_ID_WEB3_URL']!}/${dotenv.env['POLYGON_ID_WEB3_API_KEY']!}",
+        "network": dotenv.env['POLYGON_ID_NETWORK']!,
+        "stateContractAddr": dotenv.env['POLYGON_ID_STATE_CONTRACT']!,
+      }
+    }
+  }));
 
   // PolygonIdSdk.I.switchLog(enabled: true);
 

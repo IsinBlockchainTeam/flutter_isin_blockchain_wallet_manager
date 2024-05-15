@@ -620,11 +620,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v1.0.0_supsi"
-      resolved-ref: ad8b622c922c3ac9d86662e7cdf3c22823b592bd
-      url: "https://github.com/IsinBlockchainTeam/polygonid-flutter-sdk.git"
+      ref: "v2.3.1"
+      resolved-ref: "552de4fb72af13bb2de69e617d5a85e78bf1af15"
+      url: "https://github.com/0xPolygonID/polygonid-flutter-sdk.git"
     source: git
-    version: "2.2.9"
+    version: "2.3.1"
   quiver:
     dependency: transitive
     description:
