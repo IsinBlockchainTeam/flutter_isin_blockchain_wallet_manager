@@ -213,7 +213,8 @@ class _WalletSecretPhraseConfirmationState
                   if (_checkSecretPhrase()) {
                     _createWallet().then(
                       (value) => {
-                        Navigator.of(context).popUntil((route) => false),
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst),
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: widget.onFinished,

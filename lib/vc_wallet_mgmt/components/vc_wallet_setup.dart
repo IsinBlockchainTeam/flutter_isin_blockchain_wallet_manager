@@ -45,7 +45,8 @@ class _VCWalletSetupState extends State<VCWalletSetup> {
   Future<VCWallet?> _createVcWalletNextStep(BuildContext context) {
     return _createVcWallet().then((vcWallet) {
       if (vcWallet != null) {
-        Navigator.of(context).popUntil((route) => false);
+        Navigator.of(context).popUntil((route) => route.isFirst);
+        // Navigator.of(context).popUntil((route) => false);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: widget.onFinished,

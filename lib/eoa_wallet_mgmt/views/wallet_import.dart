@@ -75,7 +75,8 @@ class _WalletImportState extends State<WalletImport> {
         onConfirmed: (matchedText) => {
           _importWallet(matchedText).then(
             (value) => {
-              Navigator.of(context).popUntil((route) => false),
+              Navigator.of(context).popUntil((route) => route.isFirst),
+              // Navigator.of(context).popUntil((route) => false),
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: widget.onFinished,
@@ -86,7 +87,7 @@ class _WalletImportState extends State<WalletImport> {
           // Navigator.of(context).pushAndRemoveUntil(
           //     MaterialPageRoute(builder: (ctx) => const WalletMain()),
           //     (route) => false),
-          Navigator.of(context).popUntil((route) => route.isFirst),
+          // Navigator.of(context).popUntil((route) => route.isFirst),
         },
         onCancelled: () => {
           debugPrint('Cancelled'),
