@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/common/component/wallet/custom_qr_code.dart';
 import 'package:flutter_isin_ui_kit/components/clipboard_copyable_text.dart';
 import 'package:flutter_isin_ui_kit/components/field_obscurable.dart';
 
@@ -108,7 +109,6 @@ class _WalletHomeState extends State<WalletHome> {
   List<Widget> _buildWalletDetails(BuildContext context) {
     List<Widget> children = [];
     children.add(_buildMenu(context));
-    children.add(const SizedBox(height: 30));
     children.addAll(_buildEoaWalletDetails());
     children.addAll(_buildVcWalletDetails());
     return children;
@@ -116,6 +116,12 @@ class _WalletHomeState extends State<WalletHome> {
 
   List<Widget> _buildEoaWalletDetails() {
     return [
+      CustomQrCode(
+        data: 'ethereum:${eoaWalletAddress.toString()}',
+      ),
+      const SizedBox(
+        height: 30,
+      ),
       Flexible(
           child: TextFormField(
         canRequestFocus: false,
