@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/common/utils/counter_utils.dart';
 
 import '../../common/storage/wallet_storage_manager.dart';
 
@@ -72,10 +73,11 @@ class _WalletSecretPhraseConfirmationState
   }
 
   int _nextAvailableIndex(int currentIndex) {
-    int i = currentIndex + 1;
-    while (ellipsesValue.containsKey(i) && i != currentIndex) {
-      i = (i + 1) % _secretPhraseWords.length;
-    }
+    int i = currentIndex;
+
+    do {
+      i = CounterUtils.circularIncrement(i, _secretPhraseWords.length);
+    } while (ellipsesValue.containsKey(i) && i != currentIndex);
 
     if (i == currentIndex) {
       i = -1;
