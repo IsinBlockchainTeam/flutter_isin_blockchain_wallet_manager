@@ -9,9 +9,11 @@ class CustomQrCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return QrImageView(
-      data: data,
-      size: size,
+    return Center(
+      child: QrImageView(
+        data: data,
+        size: size,
+      ),
     );
   }
 }

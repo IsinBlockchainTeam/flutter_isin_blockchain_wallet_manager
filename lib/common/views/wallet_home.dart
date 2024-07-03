@@ -85,24 +85,25 @@ class _WalletHomeState extends State<WalletHome> {
   _buildBody(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(20),
-      child: Center(
-        child: widget.isUnlocked
-            ? Column(
+      child: widget.isUnlocked
+          ? SingleChildScrollView(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
                 children: _buildWalletDetails(context),
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildMenu(context),
-                  const Text('Locked'),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                ],
               ),
-      ),
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildMenu(context),
+                const Text('Locked'),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
     );
   }
 
@@ -122,34 +123,35 @@ class _WalletHomeState extends State<WalletHome> {
       const SizedBox(
         height: 30,
       ),
-      Flexible(
-          child: TextFormField(
-        canRequestFocus: false,
-        initialValue: eoaWalletAddress.toString(),
-        readOnly: true,
-        expands: true,
-        maxLines: null,
-        enabled: true,
-        decoration: InputDecoration(
-          labelText: "Wallet address",
-          isDense: true,
-          // Reduces height a bit
-          border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-          suffixIcon: Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
-              child: ClipboardCopyableText(
-                text: eoaWalletAddress.toString(),
-                textLabel: 'EOA Wallet Address',
-              )),
+      SizedBox(
+        height: 70,
+        child: TextFormField(
+          canRequestFocus: false,
+          initialValue: eoaWalletAddress.toString(),
+          readOnly: true,
+          expands: true,
+          maxLines: null,
+          enabled: true,
+          decoration: InputDecoration(
+            labelText: "Wallet address",
+            isDense: true,
+            // Reduces height a bit
+            border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            suffixIcon: Padding(
+                padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
+                child: ClipboardCopyableText(
+                  text: eoaWalletAddress.toString(),
+                  textLabel: 'EOA Wallet Address',
+                )),
+          ),
         ),
-      )),
+      ),
       const SizedBox(height: 30),
-      Flexible(
-          child: FieldObscurable(
+      FieldObscurable(
         text: '${eoaWalletPrivateKey?.toString()}',
         labelText: 'Private Key',
-      )),
+      ),
       const SizedBox(height: 30),
     ];
   }
@@ -160,9 +162,7 @@ class _WalletHomeState extends State<WalletHome> {
     }
 
     return [
-      Flexible(
-          child: FieldObscurable(
-              text: '${vcWallet?.did.toString()}', labelText: 'DID')),
+      FieldObscurable(text: '${vcWallet?.did.toString()}', labelText: 'DID'),
       const SizedBox(height: 30),
     ];
   }
