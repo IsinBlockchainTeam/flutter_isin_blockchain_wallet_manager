@@ -37,10 +37,9 @@ class _DownloadScreenState extends State<DownloadScreen> {
                   sharedData.circuitsToDownload![currentIndex].circuitsName;
             }
           });
+        } else if (downloadInfo is DownloadInfoOnDone) {
+          Navigator.of(context).pop();
         }
-      },
-      onDone: () {
-        Navigator.of(context).pop();
       },
     );
   }

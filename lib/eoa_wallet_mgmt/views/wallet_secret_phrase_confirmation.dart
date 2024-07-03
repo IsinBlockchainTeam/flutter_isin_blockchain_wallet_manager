@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../common/storage/wallet_storage_manager.dart';
@@ -7,12 +9,15 @@ class WalletSecretPhraseConfirmation extends StatefulWidget {
       {super.key,
       required this.secretPhrase,
       required this.walletStorageManager,
-      required this.onFinished});
+      required this.onFinished,
+      this.requiredConfirmationCount = 3});
 
   final String secretPhrase;
   final WalletStorageManager walletStorageManager;
 
   final Widget Function(BuildContext) onFinished;
+
+  final int requiredConfirmationCount;
 
   @override
   State<WalletSecretPhraseConfirmation> createState() =>
@@ -25,6 +30,7 @@ class _WalletSecretPhraseConfirmationState
   late final List<String> _shuffledSecretPhraseWords;
 
   final Map<int, String> ellipsesValue = {};
+  final List<int> disabledEllipses = [];
   int selectedEllipseIndex = 0;
 
   @override
@@ -34,11 +40,48 @@ class _WalletSecretPhraseConfirmationState
     _secretPhraseWords = widget.secretPhrase.split(' ');
     _shuffledSecretPhraseWords = List.from(_secretPhraseWords);
     _shuffledSecretPhraseWords.shuffle();
+
+    _populateEllipsesValue(widget.requiredConfirmationCount);
+
+    setState(() {
+      selectedEllipseIndex = _nextAvailableIndex(-1);
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void _populateEllipsesValue(final int requiredConfirmationCount) {
+    final populateCount = _secretPhraseWords.length - requiredConfirmationCount;
+    int i = 0;
+    while (i < populateCount) {
+      final int randomIndex = Random().nextInt(_secretPhraseWords.length);
+
+      if (!ellipsesValue.containsKey(randomIndex)) {
+        disabledEllipses.add(randomIndex);
+        ellipsesValue[randomIndex] = _secretPhraseWords[randomIndex];
+        i++;
+      }
+    }
+  }
+
+  bool _isDisabled(int index) {
+    return disabledEllipses.contains(index);
+  }
+
+  int _nextAvailableIndex(int currentIndex) {
+    int i = currentIndex + 1;
+    while (ellipsesValue.containsKey(i) && i != currentIndex) {
+      i = (i + 1) % _secretPhraseWords.length;
+    }
+
+    if (i == currentIndex) {
+      i = -1;
+    }
+
+    return i;
   }
 
   bool _checkSecretPhrase() {
@@ -83,9 +126,11 @@ class _WalletSecretPhraseConfirmationState
       itemCount: _secretPhraseWords.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () {
-            _selectEllipse(index);
-          },
+          onTap: !_isDisabled(index)
+              ? () {
+                  _selectEllipse(index);
+                }
+              : null,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -103,6 +148,7 @@ class _WalletSecretPhraseConfirmationState
                         : Colors.lightBlueAccent,
                     width: 1,
                   ),
+                  color: _isDisabled(index) ? Colors.grey[300] : Colors.white,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Center(
@@ -130,19 +176,19 @@ class _WalletSecretPhraseConfirmationState
       itemCount: _shuffledSecretPhraseWords.length,
       itemBuilder: (context, index) {
         return OutlinedButton(
-          onPressed: ellipsesValue
-                  .containsValue(_shuffledSecretPhraseWords[index])
-              ? null
-              : () {
-                  if (selectedEllipseIndex != -1) {
-                    setState(() {
-                      ellipsesValue[selectedEllipseIndex] =
-                          _shuffledSecretPhraseWords[index];
-                      selectedEllipseIndex =
-                          selectedEllipseIndex + 1; // Reset selected ellipse
-                    });
-                  }
-                },
+          onPressed:
+              ellipsesValue.containsValue(_shuffledSecretPhraseWords[index])
+                  ? null
+                  : () {
+                      if (selectedEllipseIndex != -1) {
+                        setState(() {
+                          ellipsesValue[selectedEllipseIndex] =
+                              _shuffledSecretPhraseWords[index];
+                          selectedEllipseIndex =
+                              _nextAvailableIndex(selectedEllipseIndex);
+                        });
+                      }
+                    },
           style: OutlinedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           ),
