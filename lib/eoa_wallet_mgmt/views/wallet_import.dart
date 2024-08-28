@@ -23,8 +23,9 @@ class _WalletImportState extends State<WalletImport> {
   final _pinController = InputController();
   final _formKey = GlobalKey<FormState>();
 
-  bool isPhraseValid = false;
-  late String _secretRecoveryPhrase;
+  bool isSeedValid = false;
+  String _secretRecoveryPhrase = "";
+  String _privateKey = "";
 
   @override
   void dispose() {
@@ -32,12 +33,22 @@ class _WalletImportState extends State<WalletImport> {
   }
 
   Future<void> _importWallet(String pin) async {
-    if (isPhraseValid) {
-      String privateKey = await widget.walletStorageManager
-          .getPrivateKey(_secretRecoveryPhrase);
+    if (isSeedValid) {
+      String privateKey = _privateKey;
+      if (_secretRecoveryPhrase != "") {
+        privateKey = await widget.walletStorageManager
+            .getPrivateKey(_secretRecoveryPhrase);
+      }
+
       await widget.walletStorageManager.setPrivateKey(privateKey);
       SecureStorageService.write(SecureStorageKeys.passCodePin, pin);
     }
+  }
+
+  bool _isValidPrivateKey(String input) {
+    // Check if input starts with '0x' and is 66 characters long (64 hex digits + '0x')
+    final privateKeyPattern = RegExp(r'^0x[a-fA-F0-9]{64}$');
+    return privateKeyPattern.hasMatch(input.trim());
   }
 
   Widget checkPhraseButton(BuildContext context) {
@@ -45,12 +56,12 @@ class _WalletImportState extends State<WalletImport> {
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           setState(() {
-            isPhraseValid = true;
+            isSeedValid = true;
           });
           // If the form is valid, display a snackbar. In the real world,
           // you'd often call a server or save the information in a database.
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Phrase inserted correctly')),
+            const SnackBar(content: Text('Value inserted correctly')),
           );
         }
       },
@@ -58,7 +69,7 @@ class _WalletImportState extends State<WalletImport> {
         backgroundColor: Colors.blue[900],
       ),
       child: const Text(
-        'Check phrase',
+        'Check',
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -121,7 +132,7 @@ class _WalletImportState extends State<WalletImport> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text(
-                'Import from seed',
+                'Import by seed phrase or private key',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -132,28 +143,29 @@ class _WalletImportState extends State<WalletImport> {
                 height: 10,
               ),
               InputFieldObscurable(
-                hintText: 'words separated by spaces',
-                labelText: 'Secret Recovery Phrase',
-                isEnabled: !isPhraseValid,
+                hintText: 'spaced words or 0x...',
+                labelText: 'Seed phrase or private key',
+                isEnabled: !isSeedValid,
                 validator: (String? value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your Secret Recovery Phrase';
+                    return 'Please enter your value';
                   }
-                  if (value.split(' ').length != 12) {
-                    return 'Please enter 12 words separated by spaces';
+                  if (_isValidPrivateKey(value)) {
+                    _privateKey = value;
+                    return null;
+                  }
+                  if (value.split(' ').length == 12) {
+                    _secretRecoveryPhrase = value;
+                    return null;
                   }
 
-                  _secretRecoveryPhrase = value;
-
-                  return null;
+                  return 'Please enter a valid seed phrase or private key';
                 },
               ),
               const SizedBox(
                 height: 20,
               ),
-              isPhraseValid
-                  ? setPinButton(context)
-                  : checkPhraseButton(context),
+              isSeedValid ? setPinButton(context) : checkPhraseButton(context),
             ],
           ),
         ),
