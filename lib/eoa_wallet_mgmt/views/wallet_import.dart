@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_isin_ui_kit/utils/ui_utils.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
 import 'package:flutter_isin_ui_kit/components/input_field_obscurable.dart';
+import 'package:flutter_isin_ui_kit/components/modal_mobile_scanner.dart';
 
 import '../../common/storage/secure_storage.dart';
 import '../../common/storage/wallet_storage_manager.dart';
@@ -24,8 +26,9 @@ class _WalletImportState extends State<WalletImport> {
   final _formKey = GlobalKey<FormState>();
 
   bool isSeedValid = false;
-  String _secretRecoveryPhrase = "";
-  String _privateKey = "";
+  String? _secretRecoveryPhrase;
+  String? _privateKey;
+  final TextEditingController _seedInputController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,10 +37,10 @@ class _WalletImportState extends State<WalletImport> {
 
   Future<void> _importWallet(String pin) async {
     if (isSeedValid) {
-      String privateKey = _privateKey;
-      if (_secretRecoveryPhrase != "") {
+      String privateKey = _privateKey ?? "";
+      if (_secretRecoveryPhrase != null) {
         privateKey = await widget.walletStorageManager
-            .getPrivateKey(_secretRecoveryPhrase);
+            .getPrivateKey(_secretRecoveryPhrase!);
       }
 
       await widget.walletStorageManager.setPrivateKey(privateKey);
@@ -143,6 +146,7 @@ class _WalletImportState extends State<WalletImport> {
                 height: 10,
               ),
               InputFieldObscurable(
+                controller: _seedInputController,
                 hintText: 'spaced words or 0x...',
                 labelText: 'Seed phrase or private key',
                 isEnabled: !isSeedValid,
@@ -162,6 +166,15 @@ class _WalletImportState extends State<WalletImport> {
                   return 'Please enter a valid seed phrase or private key';
                 },
               ),
+              const SizedBox(
+                height: 5,
+              ),
+              ModalMobileScanner(onDetect: (String? value) {
+                setState(() {
+                  _seedInputController.text = value ?? '';
+                });
+                UIUtils.showToast(context, 'Value detected');
+              }),
               const SizedBox(
                 height: 20,
               ),
