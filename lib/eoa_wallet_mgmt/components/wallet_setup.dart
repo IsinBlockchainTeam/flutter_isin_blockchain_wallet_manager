@@ -59,9 +59,10 @@ class _WalletSetupState extends State<WalletSetup> {
                   foregroundColor: Colors.blue[900],
                 ),
                 child: const Text(
-                  'Import using Secret Recovery Phrase',
+                  'Import by seed phrase or private key',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),
