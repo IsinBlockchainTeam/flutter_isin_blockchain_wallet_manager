@@ -145,36 +145,44 @@ class _WalletImportState extends State<WalletImport> {
               const SizedBox(
                 height: 10,
               ),
-              InputFieldObscurable(
-                controller: _seedInputController,
-                hintText: 'spaced words or 0x...',
-                labelText: 'Seed phrase or private key',
-                isEnabled: !isSeedValid,
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your value';
-                  }
-                  if (_isValidPrivateKey(value)) {
-                    _privateKey = value;
-                    return null;
-                  }
-                  if (value.split(' ').length == 12) {
-                    _secretRecoveryPhrase = value;
-                    return null;
-                  }
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: InputFieldObscurable(
+                      controller: _seedInputController,
+                      hintText: 'spaced words or 0x...',
+                      labelText: 'Seed phrase or private key',
+                      isEnabled: !isSeedValid,
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your value';
+                        }
+                        if (_isValidPrivateKey(value)) {
+                          _privateKey = value;
+                          return null;
+                        }
+                        if (value.split(' ').length == 12) {
+                          _secretRecoveryPhrase = value;
+                          return null;
+                        }
 
-                  return 'Please enter a valid seed phrase or private key';
-                },
+                        return 'Please enter a valid seed phrase or private key';
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
+                  ModalMobileScanner(onDetect: (String? value) {
+                    setState(() {
+                      _seedInputController.text = value ?? '';
+                    });
+                    UIUtils.showToast(context, 'Value detected');
+                  }),
+                ],
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              ModalMobileScanner(onDetect: (String? value) {
-                setState(() {
-                  _seedInputController.text = value ?? '';
-                });
-                UIUtils.showToast(context, 'Value detected');
-              }),
               const SizedBox(
                 height: 20,
               ),
