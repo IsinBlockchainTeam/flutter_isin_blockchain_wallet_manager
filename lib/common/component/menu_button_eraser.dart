@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_isin_ui_kit/utils/ui_utils.dart';
 
 import './wallet_eraser_button.dart';
 import '../storage/wallet_storage_manager.dart';
@@ -26,7 +27,8 @@ class MenuButtonEraser extends WalletEraserButton {
         leadingIcon: const Icon(Icons.delete),
         child: const Text("Erase"),
         onPressed: () {
-          showConfirmDialog(context);
+          UIUtils.showConfirmDialog(context, alertTitle, alertContent,
+              alertConfirmation, alertCancel, onConfirmedAction);
         });
   }
 }
