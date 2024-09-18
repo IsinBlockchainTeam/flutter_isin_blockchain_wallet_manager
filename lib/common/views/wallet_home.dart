@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_isin_blockchain_wallet_manager/common/component/wallet/ethereum_qr_code.dart';
 import 'package:flutter_isin_ui_kit/components/clipboard_copyable_text.dart';
-import 'package:flutter_isin_ui_kit/components/field_obscurable.dart';
+import 'package:flutter_isin_ui_kit/components/fields/field_obscurable.dart';
 
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';
 import '../../vc_wallet_mgmt/model/vc_wallet.dart';
@@ -9,11 +9,12 @@ import '../../vc_wallet_mgmt/services/vc_wallet_service.dart';
 import '../component/menu_button_eraser.dart';
 
 class WalletHome extends StatefulWidget {
-  const WalletHome(
-      {super.key,
-      required this.isUnlocked,
-      this.vcWalletService,
-      required this.walletService});
+  const WalletHome({
+    super.key,
+    required this.isUnlocked,
+    this.vcWalletService,
+    required this.walletService,
+  });
 
   final bool isUnlocked;
   final VCWalletService? vcWalletService;
@@ -69,17 +70,22 @@ class _WalletHomeState extends State<WalletHome> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: initialized,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return _buildBody(context);
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Wallet'),
+      ),
+      body: FutureBuilder(
+          future: initialized,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return _buildBody(context);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
+    );
   }
 
   _buildBody(BuildContext context) {
