@@ -258,7 +258,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "532189657bc8d0aa182f955f95a9eae0828441fd"
+      resolved-ref: b696baab29709328a16c72be1b28f80d3a0416ce
       url: "https://github.com/IsinBlockchainTeam/flutter_isin_ui_kit.git"
     source: git
     version: "0.0.1"

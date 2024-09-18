@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_isin_ui_kit/utils/ui_utils.dart';
 import 'package:flutter_screen_lock/flutter_screen_lock.dart';
-import 'package:flutter_isin_ui_kit/components/input_field_obscurable.dart';
+import 'package:flutter_isin_ui_kit/components/fields/input_field_obscurable.dart';
 import 'package:flutter_isin_ui_kit/components/modal_mobile_scanner.dart';
 
 import '../../common/storage/secure_storage.dart';
