@@ -33,14 +33,9 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Wallet Management Example app'),
-          backgroundColor: Colors.cyanAccent,
-        ),
-        body: WalletHome(
-          isUnlocked: true,
-          walletService: walletService,
-        ));
+    return WalletHome(
+      isUnlocked: true,
+      walletService: walletService,
+    );
   }
 }

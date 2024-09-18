@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: asn1lib
-      sha256: "58082b3f0dca697204dbab0ef9ff208bfaea7767ea771076af9a343488428dda"
+      sha256: "2ca377ad4d677bbadca278e0ba4da4e057b80a10b927bfc8f7d8bda8fe2ceb75"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.3"
+    version: "1.5.4"
   async:
     dependency: transitive
     description:
@@ -125,10 +125,10 @@ packages:
     dependency: transitive
     description:
       name: dio
-      sha256: "0dfb6b6a1979dac1c1245e17cef824d7b452ea29bd33d3467269f9bef3715fb0"
+      sha256: "5598aa796bbf4699afd5c67c0f5f6e2ed542afc956884b9cd58c306966efc260"
       url: "https://pub.dev"
     source: hosted
-    version: "5.6.0"
+    version: "5.7.0"
   dio_cache_interceptor:
     dependency: transitive
     description:
@@ -258,7 +258,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: be01000992bd26912f75ff79b43e8ad8c8bc8169
+      resolved-ref: "532189657bc8d0aa182f955f95a9eae0828441fd"
       url: "https://github.com/IsinBlockchainTeam/flutter_isin_ui_kit.git"
     source: git
     version: "0.0.1"

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_isin_blockchain_wallet_manager/common/component/wallet/ethereum_qr_code.dart';
-import 'package:flutter_isin_ui_kit/components/clipboard_copyable_text.dart';
-import 'package:flutter_isin_ui_kit/components/fields/field_obscurable.dart';
+import 'package:flutter_isin_blockchain_wallet_manager/common/component/wallet/wallet_card.dart';
 
 import '../../eoa_wallet_mgmt/services/wallet_service.dart';
 import '../../vc_wallet_mgmt/model/vc_wallet.dart';
@@ -14,11 +12,18 @@ class WalletHome extends StatefulWidget {
     required this.isUnlocked,
     this.vcWalletService,
     required this.walletService,
+    this.buildAppBar,
+    this.backgroundColor,
+    this.iconColor,
   });
 
   final bool isUnlocked;
   final VCWalletService? vcWalletService;
   final WalletService walletService;
+
+  final PreferredSizeWidget Function(List<Widget>)? buildAppBar;
+  final Color? backgroundColor;
+  final Color? iconColor;
 
   @override
   State<WalletHome> createState() => _WalletHomeState();
@@ -68,12 +73,50 @@ class _WalletHomeState extends State<WalletHome> {
     }
   }
 
+  Widget _buildMenu(BuildContext context) {
+    return MenuAnchor(
+      // childFocusNode: _buttonFocusNode,
+      builder:
+          (BuildContext context, MenuController controller, Widget? child) {
+        return IconButton(
+          icon: const Icon(Icons.more_horiz),
+          onPressed: () {
+            if (controller.isOpen) {
+              controller.close();
+            } else {
+              controller.open();
+            }
+          },
+        );
+      },
+      alignmentOffset: const Offset(-50, 0),
+      menuChildren: [
+        MenuButtonEraser(
+                walletService: widget.walletService,
+                vcWalletService: widget.vcWalletService)
+            .build(context),
+      ],
+    );
+  }
+
+  PreferredSizeWidget _buildAppBar(BuildContext context) {
+    PreferredSizeWidget appBar = AppBar(
+      title: const Text('Wallet'),
+      actions: [_buildMenu(context)],
+    );
+
+    if (widget.buildAppBar != null) {
+      appBar = widget.buildAppBar!([_buildMenu(context)]);
+    }
+
+    return appBar;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Wallet'),
-      ),
+      appBar: _buildAppBar(context),
+      backgroundColor: widget.backgroundColor,
       body: FutureBuilder(
           future: initialized,
           builder: (context, snapshot) {
@@ -90,118 +133,26 @@ class _WalletHomeState extends State<WalletHome> {
 
   _buildBody(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
       child: widget.isUnlocked
           ? SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: _buildWalletDetails(context),
+              child: WalletCard(
+                eoaWalletAddress: eoaWalletAddress,
+                eoaWalletPrivateKey: eoaWalletPrivateKey,
+                did: vcWallet?.did.toString(),
+                iconColor: widget.iconColor,
               ),
             )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildMenu(context),
-                const Text('Locked'),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
+          : const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Locked'),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
-    );
-  }
-
-  List<Widget> _buildWalletDetails(BuildContext context) {
-    List<Widget> children = [];
-    children.add(_buildMenu(context));
-    children.addAll(_buildEoaWalletDetails());
-    children.addAll(_buildVcWalletDetails());
-    return children;
-  }
-
-  List<Widget> _buildEoaWalletDetails() {
-    return [
-      EthereumQrCode(
-        address: eoaWalletAddress.toString(),
-      ),
-      const SizedBox(
-        height: 30,
-      ),
-      SizedBox(
-        height: 70,
-        child: TextFormField(
-          canRequestFocus: false,
-          initialValue: eoaWalletAddress.toString(),
-          readOnly: true,
-          expands: true,
-          maxLines: null,
-          enabled: true,
-          decoration: InputDecoration(
-            labelText: "Wallet address",
-            isDense: true,
-            // Reduces height a bit
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            suffixIcon: Padding(
-                padding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
-                child: ClipboardCopyableText(
-                  text: eoaWalletAddress.toString(),
-                  textLabel: 'EOA Wallet Address',
-                )),
-          ),
-        ),
-      ),
-      const SizedBox(height: 30),
-      FieldObscurable(
-        text: '${eoaWalletPrivateKey?.toString()}',
-        labelText: 'Private Key',
-      ),
-      const SizedBox(height: 30),
-    ];
-  }
-
-  List<Widget> _buildVcWalletDetails() {
-    if (vcWallet == null) {
-      return [];
-    }
-
-    return [
-      FieldObscurable(text: '${vcWallet?.did.toString()}', labelText: 'DID'),
-      const SizedBox(height: 30),
-    ];
-  }
-
-  Widget _buildMenu(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        MenuAnchor(
-          // childFocusNode: _buttonFocusNode,
-          builder:
-              (BuildContext context, MenuController controller, Widget? child) {
-            return IconButton(
-              icon: const Icon(Icons.more_horiz),
-              onPressed: () {
-                if (controller.isOpen) {
-                  controller.close();
-                } else {
-                  controller.open();
-                }
-              },
-            );
-          },
-          alignmentOffset: const Offset(-50, 0),
-          menuChildren: [
-            MenuButtonEraser(
-                    walletService: widget.walletService,
-                    vcWalletService: widget.vcWalletService)
-                .build(context),
-          ],
-        ),
-      ],
     );
   }
 }
