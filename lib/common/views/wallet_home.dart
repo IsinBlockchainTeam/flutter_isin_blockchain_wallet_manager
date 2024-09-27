@@ -117,25 +117,23 @@ class _WalletHomeState extends State<WalletHome> {
     return Scaffold(
       appBar: _buildAppBar(context),
       backgroundColor: widget.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: FutureBuilder(
-            future: initialized,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return _buildBody(context);
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            }),
-      ),
+      body: FutureBuilder(
+          future: initialized,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return _buildBody(context);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 
   _buildBody(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(10.0),
       child: widget.isUnlocked
           ? SingleChildScrollView(
               child: WalletCard(
